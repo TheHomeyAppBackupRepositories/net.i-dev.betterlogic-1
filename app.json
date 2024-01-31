@@ -1,6 +1,6 @@
 {
   "id": "net.i-dev.betterlogic",
-  "version": "3.4.13",
+  "version": "3.4.7",
   "compatibility": ">=5.0.0",
   "sdk": 3,
   "name": {
@@ -1079,11 +1079,6 @@
               "en": "BLL Expression",
               "nl": "BLL Expression",
               "de": "BLL Bezeichnung"
-            },
-            "title": {
-              "en": "BLL Expression",
-              "nl": "BLL Expression",
-              "de": "BLL Bezeichnung"
             }
           }
         ],
@@ -1094,7 +1089,7 @@
             "title": {
               "en": "Expression value (Text)",
               "nl": "Expressie waarde (Tekst)",
-              "de": "Ausdruckswert (Text)"
+              "de": "Text"
             }
           },
           {
@@ -1113,55 +1108,6 @@
               "en": "Expression value (Yes/No)",
               "nl": "Expressie waarde (Ja/Nee)",
               "de": "Ja/Nein"
-            }
-          },
-          {
-            "name": "json",
-            "type": "string",
-            "title": {
-              "en": "JSON value",
-              "nl": "JSON waarde",
-              "de": "JSON-Wert"
-            }
-          }
-        ]
-      },
-      {
-        "id": "execute_text_tag",
-        "title": {
-          "en": "Execute Text (as Tag)",
-          "nl": "Tekst uitvoeren (als Tag)",
-          "de": "Text ausführen (als Tag)"
-        },
-        "titleFormatted": {
-          "en": "Execute [[text]] (as Tag)",
-          "nl": "Voer [[text]] uit (als Tag)",
-          "de": "Führen Sie [[text]] aus (als Tag)"
-        },
-        "args": [
-          {
-            "name": "text",
-            "type": "text",
-            "placeholder": {
-              "en": "Text (* BLL supported)",
-              "nl": "Tekst (* BLL ondersteund)",
-              "de": "Text (* BLL unterstützt)"
-            },
-            "title": {
-              "en": "Text",
-              "nl": "Tekst",
-              "de": "Text"
-            }
-          }
-        ],
-        "tokens": [
-          {
-            "name": "text",
-            "type": "string",
-            "title": {
-              "en": "Value",
-              "nl": "Waarde",
-              "de": "Wert"
             }
           }
         ]
@@ -1323,97 +1269,6 @@
         ]
       },
       {
-        "id": "set_boolean_variable",
-        "deprecated": true,
-        "title": {
-          "en": "Set boolean variable"
-        },
-        "titleFormatted": {
-          "en": "Set [[variable]] to [[boolean_value]]",
-          "nl": "Zet [[variable]] naar [[boolean_value]]",
-          "de": "Setze [[variable]] auf [[boolean_value]]"
-        },
-        "args": [
-          {
-            "name": "variable",
-            "type": "autocomplete",
-            "title": {
-              "en": "Variable",
-              "nl": "Variabele"
-            },
-            "placeholder": {
-              "en": "Variable",
-              "nl": "Variabele"
-            }
-          },
-          {
-            "name": "boolean_value",
-            "type": "dropdown",
-            "values": [
-              {
-                "id": "true",
-                "label": {
-                  "en": "True",
-                  "nl": "Waar"
-                }
-              },
-              {
-                "id": "false",
-                "label": {
-                  "en": "False",
-                  "nl": "Niet waar"
-                }
-              }
-            ],
-            "placeholder": {
-              "en": "Yes/No",
-              "nl": "Ja/Nee"
-            },
-            "title": {
-              "en": "Yes/No",
-              "nl": "Ja/Nee"
-            }
-          }
-        ]
-      },
-      {
-        "id": "set_boolean_variable_v2",
-        "title": {
-          "en": "Set boolean variable"
-        },
-        "titleFormatted": {
-          "en": "Set [[variable]] to [[value]]",
-          "nl": "Zet [[variable]] naar [[value]]",
-          "de": "Setze [[variable]] auf [[value]]"
-        },
-        "args": [
-          {
-            "name": "variable",
-            "type": "autocomplete",
-            "title": {
-              "en": "Variable",
-              "nl": "Variabele"
-            },
-            "placeholder": {
-              "en": "Variable",
-              "nl": "Variabele"
-            }
-          },
-          {
-            "name": "value",
-            "type": "checkbox",
-            "placeholder": {
-              "en": "Yes/No",
-              "nl": "Ja/Nee"
-            },
-            "title": {
-              "en": "Yes/No",
-              "nl": "Ja/Nee"
-            }
-          }
-        ]
-      },
-      {
         "id": "increment_number_variable",
         "title": {
           "en": "Increment number variable",
@@ -1515,6 +1370,59 @@
             "placeholder": {
               "en": "Variable",
               "nl": "Variabele"
+            }
+          }
+        ]
+      },
+      {
+        "id": "set_boolean_variable",
+        "title": {
+          "en": "Set boolean variable"
+        },
+        "titleFormatted": {
+          "en": "Set [[variable]] to [[boolean_value]]",
+          "nl": "Zet [[variable]] naar [[boolean_value]]",
+          "de": "Setze [[variable]] auf [[boolean_value]]"
+        },
+        "args": [
+          {
+            "name": "variable",
+            "type": "autocomplete",
+            "title": {
+              "en": "Variable",
+              "nl": "Variabele"
+            },
+            "placeholder": {
+              "en": "Variable",
+              "nl": "Variabele"
+            }
+          },
+          {
+            "name": "boolean_value",
+            "type": "dropdown",
+            "values": [
+              {
+                "id": "true",
+                "label": {
+                  "en": "True",
+                  "nl": "Waar"
+                }
+              },
+              {
+                "id": "false",
+                "label": {
+                  "en": "False",
+                  "nl": "Niet waar"
+                }
+              }
+            ],
+            "placeholder": {
+              "en": "Yes/No",
+              "nl": "Ja/Nee"
+            },
+            "title": {
+              "en": "Yes/No",
+              "nl": "Ja/Nee"
             }
           }
         ]
