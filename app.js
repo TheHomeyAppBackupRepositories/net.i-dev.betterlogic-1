@@ -678,14 +678,11 @@ class BetterLogic extends Homey.App {
 			format_number.getArgument('styleOption2')
 				.registerAutocompleteListener((query, args) => {
 					switch (args.style) {
-						// case 'decimal':
-						// 	return [
-						// 		{ id: 'standard', name: 'standard' },
-						// 		{ id: 'scientific', name: 'scientific' },
-						// 		{ id: 'engineering', name: 'engineering' },
-						// 		{ id: 'compact_short', name: 'compact short' },
-						// 		{ id: 'compact_long', name: 'compact long' }
-						// 	];
+						case 'decimal':
+							return [
+								{ id: 'standard', name: 'Standard' },
+								{ id: 'noGrouping', name: 'No Grouping' }
+							];
 						case 'currency':
 							return [
 								{ id: 'symbol', name: 'Symbol' },
@@ -779,32 +776,36 @@ class BetterLogic extends Homey.App {
 
 			this.homey.flow.getActionCard('execute_bl_expression_tag').registerRunListener(async (args, state) => {
 				try {
-					// if(args.code && !args.expression) {
-					// 	let val = JSON.stringify(await this.runSandBox(args.code, {arg:args.argument}));
-					// 	throw new Error("Result = " + val);
-					// }
-					//return { text: '', number: 0, boolean: false };
-
-					//const a = new vm.Script(args.expression).runInNewContext({date:(x)=>x}, { timeout: 55 * 1000 });
-
-					//return { text: new vm.Script(args.expression).runInNewContext({date:(x)=>x}, { timeout: 55 * 1000 }), number: 0, boolean: false };
-
-					//return { text: sandbox(args.expression, {date:(x)=>x}, { timeout: 55 * 1000 }), number: 0, boolean: false };
-
 					if (args.expression !== undefined && args.expression !== 'undefined') {
 						const value = this.runSandBox(args.expression, { arg: args.argument });
-						const tokens = { text: '', number: 0, boolean: false };
+						const tokens = { text: '', number: 0, boolean: false, json:'' };
 						switch (typeof (value)) {
 							case "string": tokens.text = value; break;
 							case "number": tokens.number = value; break;
 							case "boolean": tokens.boolean = value; break;
 							default:
+								tokens.json = JSON.stringify(value);
 								break;
 						}
 						return tokens;
 					}
 				} catch (error) {
 					this.log('execute_bl_expression_tag:');
+					this.error(error);
+					throw new Error(error);
+				}
+			});
+
+			this.homey.flow.getActionCard('execute_text_tag').registerRunListener(async (args, state) => {
+				try {
+
+					if (args.text !== undefined && args.text !== 'undefined') {
+
+						if (args && args.text) args.text = await this.runCoding({ text: args.text });
+						return { text: args.text };
+					}
+				} catch (error) {
+					this.log('execute_text_tag:');
 					this.error(error);
 					throw new Error(error);
 				}
